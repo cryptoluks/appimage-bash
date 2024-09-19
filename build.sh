@@ -103,6 +103,10 @@ tar -xzvf "$APP_SHORT_NAME".tar.gz --strip-components=1 -C $APP_DEPLOY && rm -r 
 echo "==> Check Version $APP_SHORT_NAME"
 PACKAGE=$(cat "$APP_DEPLOY"/"$APP_VERSION_FILE")
 
+echo "==> Testing"
+sed -i '/pm.mediator.trigger("hideUserSwitchingExperienceModal");/!b;n;cpm.mediator.trigger("hideUserSwitchingExperienceModal");' Postman/app/resources/app/js/scratchpad/scratchpad.js
+sed -i '/pm.settings.setSetting("offlineAPIClientEnabled",/!b;n;cpm.settings.setSetting("offlineAPIClientEnabled",!0);' Postman/app/resources/app/js/scratchpad/scratchpad.js
+
 # Default search for version inside version file, otherwise run specified bash.
 if [ -z "$APP_VERSION_BASH" ]; then
   VERSION=$(sed -n 's/^version=//p' $APP_DEPLOY/"$APP_VERSION_FILE")

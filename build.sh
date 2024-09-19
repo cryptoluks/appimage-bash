@@ -95,10 +95,10 @@ if [ -z "$APP_NAME" ]; then
 fi
 
 echo "==> Download $APP_SHORT_NAME"
-wget -O "$APP_SHORT_NAME".tar.gz "$APP_DOWNLOAD_URL"
+wget -q -O "$APP_SHORT_NAME".tar.gz "$APP_DOWNLOAD_URL"
 
 echo "==> Extract $APP_SHORT_NAME"
-tar -xzvf "$APP_SHORT_NAME".tar.gz --strip-components=1 -C $APP_DEPLOY && rm -r *.tar.gz
+tar -xzf "$APP_SHORT_NAME".tar.gz --strip-components=1 -C $APP_DEPLOY && rm -r *.tar.gz
 
 echo "==> Check Version $APP_SHORT_NAME"
 PACKAGE=$(cat "$APP_DEPLOY"/"$APP_VERSION_FILE")

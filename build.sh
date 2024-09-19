@@ -106,8 +106,10 @@ PACKAGE=$(cat "$APP_DEPLOY"/"$APP_VERSION_FILE")
 echo "==> Testing"
 ls -la
 ls -la $APP_DEPLOY
-sed -i '/pm.mediator.trigger("hideUserSwitchingExperienceModal");/!b;n;cpm.mediator.trigger("hideUserSwitchingExperienceModal");' "$APP_DEPLOY/Postman/app/resources/app/js/scratchpad/scratchpad.js"
-sed -i '/pm.settings.setSetting("offlineAPIClientEnabled",/!b;n;cpm.settings.setSetting("offlineAPIClientEnabled",!0);' "$APP_DEPLOY/Postman/app/resources/app/js/scratchpad/scratchpad.js"
+ls -la $APP_DIRECTORY
+find $APP_DIRECTORY -name scratchpad.js
+sed -i '/pm.mediator.trigger("hideUserSwitchingExperienceModal");/!b;n;cpm.mediator.trigger("hideUserSwitchingExperienceModal");' "$APP_DIRECTORY/Postman/app/resources/app/js/scratchpad/scratchpad.js"
+sed -i '/pm.settings.setSetting("offlineAPIClientEnabled",/!b;n;cpm.settings.setSetting("offlineAPIClientEnabled",!0);' "$APP_DIRECTORY/Postman/app/resources/app/js/scratchpad/scratchpad.js"
 
 # Default search for version inside version file, otherwise run specified bash.
 if [ -z "$APP_VERSION_BASH" ]; then

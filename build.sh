@@ -185,6 +185,8 @@ echo "==> Build $APP_SHORT_NAME AppImage"
 wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
 chmod +x *.AppImage
 
+sudo apt-get update && sudo apt-get install -y fuse
+
 if [ "$GITHUB_RUNNING_ACTION" == true ]; then
   ARCH=x86_64 ./appimagetool-x86_64.AppImage --comp gzip "$APP_DIRECTORY" -n -u "gh-releases-zsync|$GH_USER|$GH_REPO|latest|$APP_SHORT_NAME*.AppImage.zsync"
   echo "APP_NAME=$APP_NAME" >> "$GITHUB_ENV"
